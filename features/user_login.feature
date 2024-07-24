@@ -9,5 +9,6 @@ Scenario: User login
     When a user logs in with username "existinguser" and password "password123"
     Then the user should be redirected to the homepage
     And the user data should be present in the database
+  
 
 

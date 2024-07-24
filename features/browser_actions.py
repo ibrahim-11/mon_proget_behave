@@ -7,6 +7,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
+
 class Cdiscount:
     def __init__(self):
         self.service = Service(ChromeDriverManager().install())
@@ -20,6 +22,7 @@ class Cdiscount:
         
     def open_website(self,url):
         print(f'Opening website : {url}')
+
         self.driver.get(url)
         
     def click_button(self, by, value):
@@ -49,3 +52,14 @@ class Cdiscount:
             print("Connexion rÃ©ussie")
         except Exception as e:
             print(f"Erreur lors de la connexion: {e}")
+            self.save_screenshot("screenshort/error.png")
+            
+    
+    def save_screenshot(self, file_path):
+            try:
+                # Vérifier si le dossier existe, sinon le créer
+                os.makedirs(os.path.dirname(file_path), exist_ok=True)
+                self.driver.save_screenshot(file_path)
+                print(f"Capture d'écran enregistrée : {file_path}")
+            except Exception as e:
+                print(f"Erreur lors de la capture d'écran : {e}")
